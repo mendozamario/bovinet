@@ -1,0 +1,58 @@
+<div class="title">
+    <h3>
+        <strong>Add animals.</strong>
+    </h3>
+</div>
+<br>
+
+<form [formGroup] = "formGroup">
+    <div class="form-group">
+        <label for="code">Code:</label>
+        <input class="form-control" type="text" id="code" name="code" placeholder="Code" formControlName="code">
+    </div>
+    <div class="form-gorup">
+        <label for="breed">Breed:</label>
+        <input class="form-control" type="text" name="breed" id="breed" placeholder="Breed" formControlName="breed">
+    </div>
+    <div class="form-group">
+        <label for="weight">Weight:</label>
+        <input class="form-control" type="number" name="weight" id="weight" placeholder="Weight" formControlName="weigth">
+    </div>
+    <div class="form-group">
+        <label for="dateofbirth">Date of birth:</label>
+        <input class="form-control" type="date" name="dateofbirth" id="dateofbirth" formControlName="datebirth">
+    </div>
+    <div class="form-group">
+        <label for="ownerid">Owner identification:</label>
+        <input class="form-control" type="text" name="ownerid" id="ownerid" placeholder="Owner identification">
+    </div>
+    <div class="form-group">
+        <label for="type">Type:</label>
+        <select class="form-control" name="type" id="type" formControlName="type">
+            <option value="Escotero">Escotero</option>
+            <option value="Milking">Milking</option>
+        </select>
+    </div>
+    <div class="form-gorup">
+        <label for="status">Status:</label><br>
+        <select class="form-control" name="status" id="status" formControlName="status">
+            <option value="Pregnant">Pregnant</option>
+            <option value="Not pregnant">Not pregnant</option>
+        </select>
+    </div>
+    <div class="form-gorup">
+        <label for="origin">Origin:</label><br>
+        <select class="form-control" name="origin" id="origin" formControlName="origin">
+            <option value="Born">Born</option>
+            <option value="Buy">Buy</option>
+        </select>
+    </div>  
+    <br>
+    <div class="btn-add">
+        <button class="btn btn-success" (click)="onSubmit()" [disabled]="formGroup.invalid">Add</button>
+    </div>
+    <div class="btn-cancel">
+        <button class="btn btn-danger">Cancel</button>
+    </div>
+    <br><br>
+</form>

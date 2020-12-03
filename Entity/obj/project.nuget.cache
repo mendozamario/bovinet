@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wvyoYnfpIkpWO6huPIL41Ay6z5m/1aPx8cTlSvpxuaTP+Se5+Nwu+ALgBY4H8pMaQIihavd5qtFM9dS7IkTimw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ghost\\Documents\\web-programs\\bovinet\\Entity\\Entity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ghost\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

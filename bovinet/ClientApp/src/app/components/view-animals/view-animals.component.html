@@ -1,0 +1,34 @@
+<div class="title">
+    <h3>
+        <strong>Consult animals.</strong>
+    </h3>
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Breed</th>
+            <th>Weight</th>
+            <th>Date of birth</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Origin</th>
+            <th>Owner</th>
+            <th>View animal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let animal of animals; index as i">
+            <td>{{ animal.code }}</td>
+            <td>{{ animal.breed }}</td>
+            <td>{{ animal.weigth }}</td>
+            <td>{{ animal.datebirth }}</td>
+            <th>{{ animal.type }}</th>
+            <td>{{ animal.status }}</td>
+            <td>{{ animal.origin }}</td>
+            <td>Carl Anderson</td>
+            <td><button class="btn btn-warning">View animal</button></td>
+        </tr>
+    </tbody>
+</table>

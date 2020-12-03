@@ -1,0 +1,50 @@
+<div class="title">
+    <h3>
+        <strong>Add employees.</strong>
+    </h3>
+</div>
+<hr>
+<form [formGroup] = "formGroup">
+    <div class="form-group">
+        <label for="id">Identification:</label>
+        <input class="form-control" type="text" name="id" id="id" placeholder="Identification:" formControlName="id">
+    </div>
+    <span class="text-danger ml-3" *ngIf = "formGroup.get('id').hasError('required') && formGroup.get('id').touched">
+        Identification is required
+    </span>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" name="name" id="name" placeholder="Name" formControlName="name">
+    </div>
+    <span class="text-danger ml-3" *ngIf = "formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+        Name is required
+    </span>
+    <div class="form-group">
+        <label for="position">Position:</label>
+        <input class="form-control" type="text" name="position" id="position" placeholder="Position" formControlName="position">
+    </div>
+    <span class="text-danger ml-3" *ngIf = "formGroup.get('position').hasError('required') && formGroup.get('position').touched">
+        Position is required
+    </span>
+    <div class="form-group">
+        <label for="contractdate">Contract date:</label>
+        <input class="form-control" type="date" name="contractdate" id="contractdate" formControlName="contractdate">
+    </div>
+    <span class="text-danger ml-3" *ngIf = "formGroup.get('contractdate').hasError('required') && formGroup.get('contractdate').touched">
+        Contract date is required
+    </span>
+    <div class="form-group">
+        <label for="salary">Salary:</label>
+        <input class="form-control" type="number" name="salary" id="salary" placeholder="Salary" formControlName="salary">
+    </div>
+    <span class="text-danger ml-3" *ngIf = "formGroup.get('salary').hasError('required') && formGroup.get('salary').touched">
+        Salary is required
+    </span>
+    <div class="btn-add">
+        <button class="btn btn-success" (click)="onSubmit()" [disabled] = "formGroup.invalid">Add</button>
+    </div>
+    <div class="btn-cancel">
+        <button class="btn btn-danger" type="reset">Cancel</button>
+    </div>
+    <br><br>
+</form>

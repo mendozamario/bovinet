@@ -1,0 +1,30 @@
+<div class="title">
+    <h3>
+        <strong>Consult medicines.</strong>
+    </h3>
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Expiration date</th>
+            <th>Unit cost</th>
+            <th>Quantity</th>
+            <th>Edit medicine</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let medicine of medicines; index as i">
+            <td>{{ medicine.code }}</td>
+            <td>{{ medicine.name }}</td>
+            <td>{{ medicine.type }}</td>
+            <td>{{ medicine.expirationdate }}</td>
+            <th>{{ medicine.unitcost }}</th>
+            <td>{{ medicine.quantity }}</td>
+            <td><button class="btn btn-primary">Edit medicine</button></td>
+        </tr>
+    </tbody>
+</table>

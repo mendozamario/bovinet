@@ -1,0 +1,14 @@
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Logic.deps.json
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Logic.dll
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Logic.pdb
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Data.dll
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Entity.dll
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Data.pdb
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\bin\Release\netstandard2.1\Entity.pdb
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.csprojAssemblyReference.cache
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.AssemblyInfoInputs.cache
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.AssemblyInfo.cs
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.csproj.CoreCompileInputs.cache
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.csproj.CopyComplete
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.dll
+C:\Users\Ghost\Documents\web-programs\bovinet\Logic\obj\Release\netstandard2.1\Logic.pdb

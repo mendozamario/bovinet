@@ -1,0 +1,28 @@
+<div class="title">
+    <h3>
+        <strong>Consult employees.</strong>
+    </h3>
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Identification</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Contract date</th>
+            <th>Salary</th>
+            <th>View employee</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let employee of employees; index as i">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.contractdate }}</td>
+            <th>{{ employee.salary }}</th>
+            <td><button class="btn btn-warning">View employee</button></td>
+        </tr>
+    </tbody>
+</table>
