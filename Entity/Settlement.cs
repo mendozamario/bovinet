@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity
 {
@@ -12,7 +13,8 @@ namespace Entity
         public float Discount { get; set; }
         public float Bonus { get; set; }
         public float Total { get; set; }
-
+        [ForeignKey("EmployeeId")]
+        public string EmployeeId { get; set; }
         public void CalculateSalary()
         {
             Total = Salary - Discount + Bonus;

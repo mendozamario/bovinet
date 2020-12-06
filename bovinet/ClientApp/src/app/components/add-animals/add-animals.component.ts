@@ -29,6 +29,7 @@ export class AddAnimalsComponent implements OnInit {
     this.animal.type = '';
     this.animal.status = '';
     this.animal.origin = '';
+    this.animal.ownerId = '';
 
     this.formGroup = this.formBuilder.group({
       code: [this.animal.code, Validators.required],
@@ -37,7 +38,8 @@ export class AddAnimalsComponent implements OnInit {
       datebirth: [this.animal.datebirth, Validators.required],
       type: [this.animal.type, Validators.required],
       status: [this.animal.status, Validators.required],
-      origin: [this.animal.origin, Validators.required]
+      origin: [this.animal.origin, Validators.required],
+      ownerId: [this.animal.ownerId, Validators.required]
     });
   }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity
 {
@@ -16,5 +17,7 @@ namespace Entity
         public string Origin { get; set; }
         public List<MedicineApplied> MedicinesApplied { get; set; }
         public List<Product> Products { get; set; }
+        [ForeignKey("OwnerId")]
+        public string OwnerId { get; set; }
     }
 }

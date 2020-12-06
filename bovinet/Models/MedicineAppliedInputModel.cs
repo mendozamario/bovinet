@@ -5,16 +5,14 @@ namespace bovinet.Models
 {
     public class MedicineAppliedInputModel
     {
-        public string Code { get; set; }
-        public string Type { get; set; }
-        public string Date { get; set; }
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
     }
     public class MedicineAppliedViewModel : MedicineAppliedInputModel
     {
         public MedicineAppliedViewModel(MedicineApplied medicineApplied)
         {
-            Code = medicineApplied.Code;
-            Type = medicineApplied.Type;
+            Id = medicineApplied.Id;
             Date = medicineApplied.Date;
         }
     }

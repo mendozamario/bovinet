@@ -47,8 +47,7 @@ namespace bovinet.Controllers
         {
             var medicineApplied = new MedicineApplied
             {
-                Code = medicineAppliedInput.Code,
-                Type = medicineAppliedInput.Type,
+                Id = medicineAppliedInput.Id,
                 Date = medicineAppliedInput.Date
             };
             return medicineApplied;

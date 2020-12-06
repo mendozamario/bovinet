@@ -1,1 +1,28 @@
-<p>add-applied-medicine works!</p>
+<div class="title">
+    <h3>
+        <strong>Add applied medicine.</strong>
+    </h3>
+</div>
+<hr>
+<form>
+    <div class="form-group">
+        <label for="animalCode">Animal code:</label>
+        <input class="form-control" type="text" name="animalCode" id="animalCode" placeholder="Animal code">
+    </div>
+    <div class="form-group">
+        <label for="medicine">Medicine:</label>
+        <select class="form-control" name="medicine" id="medicine">
+            <option value="medicine one">Medicine one</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date">Date:</label>
+        <input class="form-control" type="date" name="date" id="date">
+    </div>
+    <div class="save">
+        <button class="btn btn-success">Add</button>
+    </div>
+    <div class="cancel">
+        <button class="btn btn-danger" type="reset">Cancel</button>
+    </div>
+</form>

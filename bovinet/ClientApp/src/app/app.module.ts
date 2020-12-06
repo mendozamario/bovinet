@@ -40,7 +40,7 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     ViewAnimalsComponent,
     ViewEmployeesComponent,
     ViewMedicinesComponent,
-    AlertModalComponent
+    AlertModalComponent,
   ],
   imports: [
     ReactiveFormsModule,

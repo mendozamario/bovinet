@@ -12,6 +12,7 @@ namespace bovinet.Models
         public string Type { get; set; }
         public string Status { get; set; }
         public string Origin { get; set; }
+        public string OwnerId { get; set; }
     }
     public class AnimalViewModel : AnimalInputModel
     {
@@ -24,6 +25,7 @@ namespace bovinet.Models
             Type = animal.Type;
             Status = animal.Status;
             Origin = animal.Origin;
+            OwnerId = animal.OwnerId;
         }
     }
 }

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3219ae98-2a19-4e5c-b365-5092b286e634/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/bovinet",
+    "appService.deploySubpath": "bovinet\\publish"
+}

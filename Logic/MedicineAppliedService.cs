@@ -17,7 +17,7 @@ namespace Logic
         {
             try
             {
-                var searchMedicineApplied = _context.MedicineApplieds.Find(medicineApplied.Code);
+                var searchMedicineApplied = _context.MedicineApplieds.Find(medicineApplied.Id);
                 if (searchMedicineApplied != null)
                 {
                     return new SaveMedicineAppliedResponse("Meddicine applied has been registered");

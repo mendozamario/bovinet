@@ -6,4 +6,5 @@ export class Animal {
     type: string;
     status: string;
     origin: string;
+    ownerId: string;
 }

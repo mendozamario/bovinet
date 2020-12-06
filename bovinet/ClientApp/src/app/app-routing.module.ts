@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'view-animals', component: ViewAnimalsComponent },
   { path: 'view-employees', component: ViewEmployeesComponent },
   { path: 'view-medicines', component: ViewMedicinesComponent },
+  { path: 'settlement', component: AddSettlementComponent},
   { path: '**', redirectTo: 'home' }
 ]
 

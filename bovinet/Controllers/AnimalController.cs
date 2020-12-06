@@ -58,7 +58,8 @@ namespace bovinet.Controllers
                 DateBirth = animalInput.DateBirth,
                 Type = animalInput.Type,
                 Status = animalInput.Status,
-                Origin = animalInput.Origin
+                Origin = animalInput.Origin,
+                OwnerId =  animalInput.OwnerId
             };
             return animal;
         }

@@ -30,3 +30,8 @@ code {
 body{
   background-color: #F1F1F1;
 }
+
+.spinner{
+  padding-top: 300px;
+  padding-left: 500px;
+}
