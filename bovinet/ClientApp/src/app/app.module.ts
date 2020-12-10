@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
 import { AddAppliedMedicineComponent } from './components/add-applied-medicine/add-applied-medicine.component';

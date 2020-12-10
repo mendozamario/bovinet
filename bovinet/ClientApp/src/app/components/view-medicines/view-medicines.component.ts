@@ -22,4 +22,11 @@ export class ViewMedicinesComponent implements OnInit {
     });
   }
 
+  deleteMedicine(code: string){
+    this.medicineService.delete(code).subscribe(result => {
+      alert("Medicine deleted");
+      this.consultMedicine();
+    })
+  }
+
 }

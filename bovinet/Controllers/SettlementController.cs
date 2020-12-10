@@ -34,6 +34,12 @@ namespace bovinet.Controllers
         //{
         //    Settlement settlement = SettlementMapper()
         //}
+        [HttpDelete("{identification}")]
+        public ActionResult<string> Delete(string identification)
+        {
+            string messaje = _settlementService.Delete(identification);
+            return Ok(messaje);
+        }
         public Settlement SettlementMapper(SettlementInputModel settlementInput)
         {
             var settlement = new Settlement

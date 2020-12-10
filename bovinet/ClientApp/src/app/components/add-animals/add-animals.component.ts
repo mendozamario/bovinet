@@ -12,12 +12,16 @@ import { AnimalService } from 'src/app/services/animal.service';
 })
 export class AddAnimalsComponent implements OnInit {
 
+  animalCode: string;
+  btnTitle = 'Add';
+  action = 'Add';
   formGroup: FormGroup;
   animal: Animal;
   constructor(private animalSerivce: AnimalService, private formBuilder: FormBuilder, private modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.buildForm();
+    this.edit();
   }
 
   private buildForm(){
@@ -55,12 +59,41 @@ export class AddAnimalsComponent implements OnInit {
   }
 
   add(){
-    this.animal = this.formGroup.value;
-    this.animalSerivce.post(this.animal).subscribe(p => {
+    if (this.action === 'Add'){
+      this.animal = this.formGroup.value;
+      this.animalSerivce.post(this.animal).subscribe(p => {
       const messageBox = this.modalService.open(AlertModalComponent)
       messageBox.componentInstance.title = "Add animal"
       messageBox.componentInstance.message = "Animal registered sucessfully"
       this.animal = p;
+      });
+    }else{
+      this.animal = this.formGroup.value;
+    this.animalSerivce.put(this.animal).subscribe(p => {
+      const messageBox = this.modalService.open(AlertModalComponent)
+      messageBox.componentInstance.title = "Edit animal"
+      messageBox.componentInstance.message = "Animal updated sucessfully"
+      this.animal = p;
     });
+    }
+  }
+
+  edit(){
+    if (this.animalCode != null){
+      this.action = 'Edit';
+      this.animalSerivce.find(this.animalCode).subscribe(result => {
+        this.animal = result;
+        this.formGroup.patchValue({
+          code: result.code,
+          breed: result.breed,
+          weigth: result.weigth,
+          datebirth: result.datebirth,
+          type: result.type,
+          status: result.status,
+          origin: result.origin,
+          ownerId: result.ownerId
+        });
+      })
+    }
   }
 }

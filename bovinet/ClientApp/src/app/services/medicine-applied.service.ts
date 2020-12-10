@@ -9,7 +9,7 @@ import { MedicineApplied } from '../models/medicine-applied';
 export class MedicineAppliedService {
 
   baseUrl: string;
-  apiUrl = "api/MedicineApplied";
+  apiUrl = "api/MedicineApplied/";
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string
@@ -23,5 +23,9 @@ export class MedicineAppliedService {
 
   post(medicineApplied: MedicineApplied): Observable<MedicineApplied> {
     return this.http.post<MedicineApplied>(this.baseUrl + this.apiUrl, medicineApplied);
+  }
+
+  delete(code: string): Observable<string>{
+    return this.http.delete<string>(this.baseUrl + this.apiUrl + code);
   }
 }

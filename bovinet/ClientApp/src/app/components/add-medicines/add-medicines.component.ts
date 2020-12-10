@@ -33,7 +33,7 @@ export class AddMedicinesComponent implements OnInit {
       code: [this.medicine.code, Validators.required],
       name: [this.medicine.name, Validators.required],
       type: [this.medicine.type, Validators.required],
-      expxirationdate: [this.medicine.expirationdate, Validators.required],
+      expirationdate: [this.medicine.expirationdate, Validators.required],
       unitcost: [this.medicine.unitcost, Validators.required],
       quantity: [this.medicine.quantity, Validators.required],
     })

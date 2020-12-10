@@ -11,7 +11,7 @@ namespace Entity
         public float LiterCost { get; set; }
         public int Quantity { get; set; }
         public string Date { get; set; }
-        [ForeignKey("CodeAnimal")]
-        public string CodeAnimal { get; set; }
+        [ForeignKey("AnimalCode")]
+        public string AnimalCode { get; set; }
     }
 }

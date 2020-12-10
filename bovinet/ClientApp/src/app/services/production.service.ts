@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Production } from '../models/production';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Production } from '../models/production';
 export class ProductionService {
 
   baseUrl: string;
-  apiUrl = "api/production";
+  apiUrl = "api/production/";
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string
@@ -17,11 +17,15 @@ export class ProductionService {
     this.baseUrl = baseUrl;
   }
 
-  get(): Observable<Production[]> {
-    return this.http.get<Production[]>(this.baseUrl + this.apiUrl);
+  get(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl + this.apiUrl);
   }
 
-  post(production: Production): Observable<Production> {
-    return this.http.post<Production>(this.baseUrl + this.apiUrl, production);
+  post(production: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseUrl + this.apiUrl, production);
+  }
+
+  delete(code: string): Observable<string>{
+    return this.http.delete<string>(this.baseUrl + this.apiUrl + code);
   }
 }

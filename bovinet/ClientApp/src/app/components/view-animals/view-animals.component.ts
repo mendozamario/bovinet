@@ -22,4 +22,11 @@ export class ViewAnimalsComponent implements OnInit {
     });
   }
 
+  deleteAnimal(code: string){
+    this.animalService.delete(code).subscribe(data => {
+      alert("Animal eliminado correctamente");
+      this.consultAnimal();
+    });
+  }
+
 }

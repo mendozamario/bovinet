@@ -24,4 +24,8 @@ export class OwnerService {
   post(owner: Owner): Observable<Owner> {
     return this.http.post<Owner>(this.baseUrl + this.apiUrl, owner);
   }
+
+  delete(code: string): Observable<string>{
+    return this.http.delete<string>(this.baseUrl + this.apiUrl + code);
+  }
 }

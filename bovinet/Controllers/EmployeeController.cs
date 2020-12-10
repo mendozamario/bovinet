@@ -43,6 +43,13 @@ namespace bovinet.Controllers
             return Ok(response.Employee);
         }
 
+        [HttpDelete("{identification}")]
+        public ActionResult<string> Delete(string identification)
+        {
+            string messaje = _employeeService.Delete(identification);
+            return Ok(messaje);
+        }
+
         public Employee EmployeeMapper(EmployeeInputModel employeeInput)
         {
             var Employee = new Employee

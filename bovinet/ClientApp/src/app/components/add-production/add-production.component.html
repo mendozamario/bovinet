@@ -4,31 +4,32 @@
     </h3>
 </div>
 <hr>
-<form>
+<form [formGroup] = "formGroup">
     <div class="form-group">
         <label for="animalCode">Animal code:</label>
-        <input class="form-control" type="text" name="animalCode" id="animalCode" placeholder="Animal code">
+        <input class="form-control" type="text" name="animalCode" id="animalCode" placeholder="Animal code" formControlName="animalCode" disabled>
     </div>
     <div class="form-group">
         <label for="code">Code:</label>
-        <input class="code" type="text" name="code" id="code" placeholder="Code">
+        <input class="form-control" type="text" name="code" id="code" placeholder="Code" formControlName="code">
     </div>
     <div class="form-group">
         <label for="unitcost">Unit cost:</label>
-        <input class="form-control" type="number" name="unitCost" id="unitCost" placeholder="Unit cost">
+        <input class="form-control" type="number" name="unitCost" id="unitCost" placeholder="Unit cost" formControlName="litercost">
     </div>
     <div class="form-group">
         <label for="quantity">Quantity:</label>
-        <input class="form-control" type="number" name="quantity" id="quantity" placeholder="Quantity">
+        <input class="form-control" type="number" name="quantity" id="quantity" placeholder="Quantity" formControlName="quantity">
     </div>
     <div class="form-group">
         <label for="date">Date:</label>
-        <input class="form-control" type="date" name="date" id="date">
+        <input class="form-control" type="date" name="date" id="date" formControlName="date">
     </div>
-    <div class="save">
-        <button class="btn btn-success">Add</button>
+    <div class="btn-add">
+        <button class="btn btn-success" (click) = "onSubmit()" [disabled]="formGroup.invalid">Add</button>
     </div>
-    <div class="cancel">
-        <button class="btn btn-cancel" type="reset">Cancel</button>
+    <div class="btn-cancel">
+        <button class="btn btn-danger" (click) = "uploadAnimalCode()">Cancel</button>
     </div>
+    <br><br>
 </form>

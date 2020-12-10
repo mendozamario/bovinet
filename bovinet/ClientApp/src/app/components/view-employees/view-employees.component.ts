@@ -21,4 +21,11 @@ export class ViewEmployeesComponent implements OnInit {
       this.employees = result;
     });
   }
+
+  deleteEmployee(id: string){
+    this.employeeService.delete(id).subscribe(result => {
+      alert("Employee deleted");
+      this.consultEmployee();
+    })
+  }
 }

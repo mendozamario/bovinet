@@ -28,7 +28,24 @@ namespace bovinet.Controllers
             var animals = _animalService.Consult().Select(p => new AnimalViewModel(p));
             return animals;
         }
-
+        // GET api/<PersonaController>/5
+        [HttpGet("{id}")]
+        public ActionResult<Animal> Get(string code)
+        {
+            try
+            {
+                var animal = _animalService.FindAnimal(code);
+                if(animal == null)
+                {
+                    return NotFound();
+                }
+                return Ok(animal);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         // POST api/<AnimalController>
         [HttpPost]
         public ActionResult<AnimalViewModel> Post(AnimalInputModel animalInput)
@@ -42,11 +59,19 @@ namespace bovinet.Controllers
             }
             return Ok(response.Animal);
         }
+        
         [HttpDelete("{identification}")]
         public ActionResult<string> Delete(string identification)
         {
             string messaje = _animalService.Delete(identification);
             return Ok(messaje);
+        }
+        [HttpPut("{identificacion}")]
+        public ActionResult<string> Put(AnimalInputModel animalInput)
+        {
+            Animal animal = AnimalMapper(animalInput);
+            var mensaje = _animalService.Update(animal);
+            return Ok(mensaje);
         }
         public Animal AnimalMapper(AnimalInputModel animalInput)
         {

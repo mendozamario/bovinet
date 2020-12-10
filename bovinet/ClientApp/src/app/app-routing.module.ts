@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
 import { AddEmployeesComponent } from './components/add-employees/add-employees.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'add-employees', component: AddEmployeesComponent },
   { path: 'add-medicines', component: AddMedicinesComponent },
   { path: 'add-owner', component: AddOwnerComponent },
-  { path: 'add-production', component: AddProductionComponent },
+  { path: 'add-production/:id', component: AddProductionComponent },
   { path: 'add-settlement', component: AddSettlementComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'view-animals', component: ViewAnimalsComponent },
@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'view-medicines', component: ViewMedicinesComponent },
   { path: 'settlement', component: AddSettlementComponent},
   { path: '**', redirectTo: 'home' }
-]
+];
 
 @NgModule({
   declarations: [],

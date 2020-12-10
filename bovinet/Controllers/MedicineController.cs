@@ -40,6 +40,13 @@ namespace bovinet.Controllers
             }
             return Ok(response.Medicine);
         }
+
+        [HttpDelete("{identification}")]
+        public ActionResult<string> Delete(string identification)
+        {
+            string messaje = _medicineServices.Delete(identification);
+            return Ok(messaje);
+        }
         public Medicine MedicineMapper(MedicineInputModel medicineInput)
         {
             var medicine = new Medicine

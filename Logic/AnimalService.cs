@@ -57,6 +57,31 @@ namespace Logic
                 return $"Application Error: {e.Message}";
             }
         }
+
+        public string Update(Animal animal)
+        {
+            try
+            {
+                var animalSearch = _context.Animals.Find(animal.Code);
+                if (animalSearch == null)
+                {
+                    return "This animal dont has been registered";
+                }
+                _context.Animals.Update(animal);
+                _context.SaveChanges();
+                return "This animal has been updated";
+            }
+            catch (System.Exception e)
+            {
+                return $"Application Error: {e.Message}";
+            }
+        }
+
+        public Animal FindAnimal(string code)
+        {
+            Animal animal = _context.Animals.Find(code);
+            return animal;
+        }
     }
 
     public class SaveAnimalResponse

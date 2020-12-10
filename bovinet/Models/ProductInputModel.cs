@@ -9,6 +9,7 @@ namespace bovinet.Models
         public float LiterCost { get; set; }
         public int Quantity { get; set; }
         public string Date { get; set; }
+        public string AnimalCode { get; set; }
     }
     public class ProductViewModel : ProductInputModel
     {

@@ -42,6 +42,13 @@ namespace bovinet.Controllers
             }
             return Ok(response.Product);
         }
+
+        [HttpDelete("{identification}")]
+        public ActionResult<string> Delete(string identification)
+        {
+            string messaje = _productService.Delete(identification);
+            return Ok(messaje);
+        }
         public Product ProductMapper (ProductInputModel productInput)
         {
             var product = new Product
