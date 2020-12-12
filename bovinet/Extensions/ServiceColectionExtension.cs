@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using bovinet.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
