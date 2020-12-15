@@ -1,26 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Owner } from 'src/app/models/owner';
-import { OwnerService } from 'src/app/services/owner.service';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl} from '@angular/forms';
-import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { Owner } from 'src/app/models/owner';
+import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { OwnerService } from 'src/app/services/owner.service';
 
 @Component({
   selector: 'app-add-owner',
   templateUrl: './add-owner.component.html',
-  styleUrls: ['./add-owner.component.css']
+  styleUrls: [ './add-owner.component.css' ]
 })
 export class AddOwnerComponent implements OnInit {
-
   formGroup: FormGroup;
   owner: Owner;
-  constructor(private ownerService: OwnerService, private formBuilder: FormBuilder, private modalService:NgbModal) { }
+  constructor(
+    private ownerService: OwnerService,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
   }
 
-  private buildForm(){
+  private buildForm() {
     this.owner = new Owner();
     this.owner.id = '';
     this.owner.name = '';
@@ -29,32 +37,52 @@ export class AddOwnerComponent implements OnInit {
     this.owner.phonenumber = '';
 
     this.formGroup = this.formBuilder.group({
-      id: [this.owner.id, Validators.required],
-      name: [this.owner.name, Validators.required],
-      mail: [this.owner.mail, Validators.required],
-      password: [this.owner.password, Validators.required],
-      phonenumber: [this.owner.phonenumber, Validators.required]
+      id: [ this.owner.id, Validators.required ],
+      name: [ this.owner.name, Validators.required ],
+      mail: [ this.owner.mail, Validators.required ],
+      username: [ '', [ Validators.required ] ],
+      password: [ this.owner.password, Validators.required ],
+      phonenumber: [ this.owner.phonenumber, Validators.required ]
     });
   }
 
-  get control(){
+  get control() {
     return this.formGroup.controls;
   }
 
-  onSubmit(){
-    if (this.formGroup.invalid){
+  onSubmit() {
+    if (this.formGroup.invalid) {
       return;
     }
     this.add();
   }
 
-  add(){
+  add() {
     this.owner = this.formGroup.value;
-    this.ownerService.post(this.owner).subscribe(p => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-      messageBox.componentInstance.title = "Add owner"
-      messageBox.componentInstance.message = "Owner registered sucessfully"
-      this.owner = p;
-    }); 
+    const user: User = {
+      username: this.control['username'].value,
+      email: this.control['mail'].value,
+      password: this.control['password'].value
+    };
+
+    this.authService
+      .registerUser(user)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return of(null);
+        })
+      )
+      .subscribe((savedUser: User) => {
+        if (savedUser) {
+          this.owner.userId = savedUser.id;
+          this.ownerService.post(this.owner).subscribe((p) => {
+            const messageBox = this.modalService.open(AlertModalComponent);
+            messageBox.componentInstance.title = 'Add owner';
+            messageBox.componentInstance.message = 'Owner registered sucessfully';
+            this.owner = p;
+          });
+        }
+      });
   }
 }
