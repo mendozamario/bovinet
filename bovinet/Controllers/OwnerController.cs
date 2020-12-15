@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using bovinet.Models;
 using Data;
 using Entity;
 using Logic;
-using bovinet.Models;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +39,7 @@ namespace bovinet.Controllers
             }
             return Ok(response.Owner);
         }
-        
+
         [HttpDelete("{identification}")]
         public ActionResult<string> Delete(string identification)
         {
@@ -57,8 +55,10 @@ namespace bovinet.Controllers
                 Mail = ownerInput.Mail,
                 Password = ownerInput.Password,
                 PhoneNumber = ownerInput.PhoneNumber,
-                Type = ownerInput.Type
+                Type = ownerInput.Type,
+                UserId = ownerInput.UserId
             };
+
             return owner;
         }
     }

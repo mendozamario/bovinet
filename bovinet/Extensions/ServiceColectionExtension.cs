@@ -1,7 +1,11 @@
 using System;
 using System.Text;
 using bovinet.Identity;
+using Data;
+using Entity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -90,6 +94,18 @@ namespace bovinet.Extensions
         public static void ConfigureTokenGenerator(this IServiceCollection services)
         {
             services.AddScoped<ITokenGenerator, TokenGenerator>();
+        }
+
+        public static void AddIdentityConfig(this IServiceCollection services)
+        {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<BovinetContext>()
+                .AddDefaultTokenProviders();
+        }
+
+        public static void ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<BovinetContext>(p => p.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }

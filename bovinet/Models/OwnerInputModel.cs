@@ -1,7 +1,6 @@
-using System;
 using Entity;
 
-namespace bovinet.Models 
+namespace bovinet.Models
 {
     public class OwnerInputModel
     {
@@ -11,6 +10,7 @@ namespace bovinet.Models
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string Type = "User";
+        public string UserId { get; set; }
     }
     public class OwnerViewModel : OwnerInputModel
     {
@@ -21,6 +21,7 @@ namespace bovinet.Models
             Mail = owner.Mail;
             Password = owner.Password;
             PhoneNumber = owner.PhoneNumber;
+            UserId = owner.UserId;
         }
     }
 }
