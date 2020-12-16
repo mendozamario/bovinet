@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 export class ProductionService {
 
   baseUrl: string;
-  apiUrl = "api/production/";
+  apiUrl = "api/product/";
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string

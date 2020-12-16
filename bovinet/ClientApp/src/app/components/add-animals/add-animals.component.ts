@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { Animal } from 'src/app/models/animal';
+import { Owner } from 'src/app/models/owner';
 import { AnimalService } from 'src/app/services/animal.service';
+import { OwnerService } from 'src/app/services/owner.service';
 
 @Component({
   selector: 'app-add-animals',
@@ -12,16 +14,18 @@ import { AnimalService } from 'src/app/services/animal.service';
 })
 export class AddAnimalsComponent implements OnInit {
 
+  owners: Owner[];
   animalCode: string;
   btnTitle = 'Add';
   action = 'Add';
   formGroup: FormGroup;
   animal: Animal;
-  constructor(private animalSerivce: AnimalService, private formBuilder: FormBuilder, private modalService:NgbModal) { }
+  constructor(private animalSerivce: AnimalService, private formBuilder: FormBuilder, private modalService:NgbModal, private ownerService: OwnerService) { }
 
   ngOnInit(): void {
     this.buildForm();
     this.edit();
+    this.consultOwners();
   }
 
   private buildForm(){
@@ -76,6 +80,12 @@ export class AddAnimalsComponent implements OnInit {
       this.animal = p;
     });
     }
+  }
+
+  consultOwners(){
+    this.ownerService.get().subscribe(result => {
+      this.owners = result;
+    });
   }
 
   edit(){
