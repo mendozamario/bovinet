@@ -19,13 +19,20 @@ export class ViewMedicinesComponent implements OnInit {
   consultMedicine(){
     this.medicineService.get().subscribe(result => {
       this.medicines = result;
+      console.log(result);
     });
   }
 
   deleteMedicine(code: string){
     this.medicineService.delete(code).subscribe(result => {
-      alert("Medicine deleted");
-      this.consultMedicine();
+      if (result){
+        this.medicines = this.medicines.filter(data => {
+          return data.code != code;
+        })
+      }else{
+        alert("Error");
+      }
+      
     })
   }
 

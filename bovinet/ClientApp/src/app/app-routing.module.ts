@@ -14,22 +14,50 @@ import { ViewEmployeesComponent } from './components/view-employees/view-employe
 import { ViewMedicinesComponent } from './components/view-medicines/view-medicines.component';
 import { AddAppliedMedicineComponent } from './components/add-applied-medicine/add-applied-medicine.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotAuthGuard } from './guards/not-auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: 'add-animals', component: AddAnimalsComponent },
-  { path: 'add-appliedmedicine', component: AddAppliedMedicineComponent },
-  { path: 'add-employees', component: AddEmployeesComponent },
-  { path: 'add-medicines', component: AddMedicinesComponent },
-  { path: 'add-owner', component: AddOwnerComponent },
-  { path: 'add-production/:id', component: AddProductionComponent },
-  { path: 'add-settlement', component: AddSettlementComponent },
-  { path: 'reports', component: ReportsComponent },
-  { path: 'view-animals', component: ViewAnimalsComponent },
-  { path: 'view-employees', component: ViewEmployeesComponent },
-  { path: 'view-medicines', component: ViewMedicinesComponent },
-  { path: 'settlement', component: AddSettlementComponent },
+  { path: 'login', component: LoginComponent, canActivate: [
+    NotAuthGuard
+  ]},
+  { path: 'home', component: HomeComponent, pathMatch: 'full' },
+  { path: 'add-animals', component: AddAnimalsComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-appliedmedicine', component: AddAppliedMedicineComponent, canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-employees', component: AddEmployeesComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-medicines', component: AddMedicinesComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-owner', component: AddOwnerComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-production/:id', component: AddProductionComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'add-settlement', component: AddSettlementComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'reports', component: ReportsComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'view-animals', component: ViewAnimalsComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'view-employees', component: ViewEmployeesComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'view-medicines', component: ViewMedicinesComponent , canActivate: [
+    AuthGuard
+  ]},
+  { path: 'settlement', component: AddSettlementComponent , canActivate: [
+    AuthGuard
+  ]},
   { path: '**', redirectTo: 'home' }
 ];
 

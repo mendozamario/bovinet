@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       .subscribe((user) => {
         if (user) {
           this.authService.setCurrentUser(user);
-          this.router.navigateByUrl('/home');
+          window.location.reload();
         }
       });
   }
