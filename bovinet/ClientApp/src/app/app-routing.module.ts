@@ -13,9 +13,11 @@ import { ViewAnimalsComponent } from './components/view-animals/view-animals.com
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { ViewMedicinesComponent } from './components/view-medicines/view-medicines.component';
 import { AddAppliedMedicineComponent } from './components/add-applied-medicine/add-applied-medicine.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'add-animals', component: AddAnimalsComponent },
   { path: 'add-appliedmedicine', component: AddAppliedMedicineComponent },
   { path: 'add-employees', component: AddEmployeesComponent },
@@ -27,7 +29,7 @@ const routes: Routes = [
   { path: 'view-animals', component: ViewAnimalsComponent },
   { path: 'view-employees', component: ViewEmployeesComponent },
   { path: 'view-medicines', component: ViewMedicinesComponent },
-  { path: 'settlement', component: AddSettlementComponent},
+  { path: 'settlement', component: AddSettlementComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

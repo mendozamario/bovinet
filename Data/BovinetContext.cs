@@ -1,12 +1,26 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+using Data.Configuration;
 using Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class BovinetContext : DbContext
+    public class BovinetContext : IdentityDbContext<ApplicationUser>
     {
-        public BovinetContext(DbContextOptions options): base(options){}
+        public BovinetContext(DbContextOptions<BovinetContext> options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new ApplicationUserConfig());
+            builder.ApplyConfiguration(new UserLoginConfig());
+            builder.ApplyConfiguration(new IdentityUserTokenConfig());
+            builder.ApplyConfiguration(new IdentityRoleConfig());
+        }
+
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Medicine> Medicines { get; set; }

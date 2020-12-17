@@ -1,13 +1,10 @@
+using bovinet.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace bovinet
 {
@@ -23,10 +20,14 @@ namespace bovinet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionStrings = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<BovinetContext>(p => p.UseSqlServer(connectionStrings));
+            services.ConfigureDbContext(Configuration);
+            services.AddIdentityConfig();
+
             services.AddControllersWithViews();
             //Add OpenApi Swagger
+            services.AddSwagger();
+            services.AddJwtAuthentication(Configuration);
+            services.ConfigureTokenGenerator();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -57,6 +58,19 @@ namespace bovinet
             }
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseCors(c =>
+            {
+                c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "My API version-1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
@@ -64,7 +78,7 @@ namespace bovinet
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-         
+
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
