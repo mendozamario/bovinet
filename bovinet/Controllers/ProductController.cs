@@ -56,7 +56,8 @@ namespace bovinet.Controllers
                 Code = productInput.Code,
                 LiterCost = productInput.LiterCost,
                 Quantity = productInput.Quantity,
-                Date = productInput.Date
+                Date = productInput.Date,
+                AnimalCode = productInput.AnimalCode
             };
             return product;
         }

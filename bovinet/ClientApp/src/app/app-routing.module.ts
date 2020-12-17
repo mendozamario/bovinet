@@ -43,9 +43,7 @@ const routes: Routes = [
   { path: 'add-settlement', component: AddSettlementComponent , canActivate: [
     AuthGuard
   ]},
-  { path: 'reports', component: ReportsComponent , canActivate: [
-    AuthGuard
-  ]},
+  { path: 'reports', component: ReportsComponent},
   { path: 'view-animals', component: ViewAnimalsComponent , canActivate: [
     AuthGuard
   ]},
