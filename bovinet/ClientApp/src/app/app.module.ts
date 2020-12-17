@@ -1,7 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
@@ -18,9 +16,12 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ViewAnimalsComponent } from './components/view-animals/view-animals.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { ViewMedicinesComponent } from './components/view-medicines/view-medicines.component';
+import { CoreModule } from './core/core.module';
 import { GlobalModule } from './global/global.module';
 import { AnimalFilterPipe } from './pipe/animal-filter.pipe';
 import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
+import { ErrorHandleService } from './shared/services/error-handle.service';
+import { NotificationsService } from './shared/services/notifications.service';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -44,14 +45,14 @@ import { SharedModule } from './shared/shared.module';
     AnimalFilterPipe
   ],
   imports: [
-    ReactiveFormsModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
+    CoreModule.forRoot(),
     GlobalModule.forRoot(),
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
+  providers: [ ErrorHandleService, NotificationsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

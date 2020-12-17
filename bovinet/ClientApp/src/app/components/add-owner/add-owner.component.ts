@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
 import { Owner } from 'src/app/models/owner';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { OwnerService } from 'src/app/services/owner.service';
+import { NotificationsService } from 'src/app/shared/services/notifications.service';
 
 @Component({
   selector: 'app-add-owner',
@@ -20,7 +19,7 @@ export class AddOwnerComponent implements OnInit {
   constructor(
     private ownerService: OwnerService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal,
+    private notifications: NotificationsService,
     private authService: AuthenticationService
   ) {}
 
@@ -77,9 +76,7 @@ export class AddOwnerComponent implements OnInit {
         if (savedUser) {
           this.owner.userId = savedUser.id;
           this.ownerService.post(this.owner).subscribe((p) => {
-            const messageBox = this.modalService.open(AlertModalComponent);
-            messageBox.componentInstance.title = 'Add owner';
-            messageBox.componentInstance.message = 'Owner registered sucessfully';
+            this.notifications.showAlert('Add owner', 'Owner registered sucessfully');
             this.owner = p;
           });
         }
