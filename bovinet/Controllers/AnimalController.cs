@@ -1,12 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Entity;
+using bovinet.Hubs;
 using bovinet.Models;
-using Logic;
 using Data;
+using Entity;
+using Logic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,9 +18,12 @@ namespace bovinet.Controllers
     public class AnimalController : ControllerBase
     {
         private readonly AnimalService _animalService;
-        public AnimalController(BovinetContext context)
+        private readonly IHubContext<AnimalHub> _hubContext;
+
+        public AnimalController(BovinetContext context, IHubContext<AnimalHub> hubContext)
         {
             _animalService = new AnimalService(context);
+            _hubContext = hubContext;
         }
         // GET: api/<AnimalController>
         [HttpGet]
@@ -35,7 +39,7 @@ namespace bovinet.Controllers
             try
             {
                 var animal = _animalService.FindAnimal(code);
-                if(animal == null)
+                if (animal == null)
                 {
                     return NotFound();
                 }
@@ -57,13 +61,16 @@ namespace bovinet.Controllers
             {
                 return BadRequest(response.Message);
             }
+            _hubContext.Clients.All.SendAsync("NewAnimal", response.Animal).Start();
             return Ok(response.Animal);
         }
-        
+
         [HttpDelete("{identification}")]
         public ActionResult<string> Delete(string identification)
         {
             string messaje = _animalService.Delete(identification);
+
+            _hubContext.Clients.All.SendAsync("DeleteAnimal").Start();
             return Ok(messaje);
         }
         [HttpPut("{identificacion}")]
@@ -84,7 +91,7 @@ namespace bovinet.Controllers
                 Type = animalInput.Type,
                 Status = animalInput.Status,
                 Origin = animalInput.Origin,
-                OwnerId =  animalInput.OwnerId
+                OwnerId = animalInput.OwnerId
             };
             return animal;
         }
