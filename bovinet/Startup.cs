@@ -1,4 +1,5 @@
 using bovinet.Extensions;
+using bovinet.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -80,6 +81,7 @@ namespace bovinet
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<AnimalHub>("/AnimalHub");
             });
 
             app.UseSpa(spa =>
