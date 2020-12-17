@@ -22,6 +22,7 @@ namespace bovinet.Models
             Discount = settlement.Discount;
             Bonus = settlement.Bonus;
             Total = settlement.Total;
+            EmployeeId = settlement.EmployeeId;
         }
         public float Total { get; set; }    
     }
