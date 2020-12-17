@@ -10,6 +10,7 @@ namespace bovinet.Models
         public float Salary { get; set; }
         public float Discount { get; set; }
         public float Bonus { get; set; }
+        public string EmployeeId { get; set; }
     }
     public class SettlementViewModel : SettlementInputModel
     {

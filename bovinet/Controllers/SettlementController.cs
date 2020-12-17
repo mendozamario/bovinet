@@ -49,6 +49,7 @@ namespace bovinet.Controllers
                 Salary = settlementInput.Salary,
                 Discount = settlementInput.Discount,
                 Bonus = settlementInput.Bonus,
+                EmployeeId = settlementInput.EmployeeId
             };
             return settlement;
         }

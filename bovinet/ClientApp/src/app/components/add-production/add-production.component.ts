@@ -55,13 +55,9 @@ export class AddProductionComponent implements OnInit {
 
   add(){
     this.production = this.formGroup.value;
-    console.log(this.production);
     this.productService.post(this.production).subscribe(result => {
       this.production = result;
       alert("Product has been registered");
-
-      
-      console.log(result);
     })
   }
 
