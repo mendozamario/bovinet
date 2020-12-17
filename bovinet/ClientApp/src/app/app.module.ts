@@ -1,8 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
 import { AddAppliedMedicineComponent } from './components/add-applied-medicine/add-applied-medicine.component';
@@ -18,11 +20,10 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ViewAnimalsComponent } from './components/view-animals/view-animals.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { ViewMedicinesComponent } from './components/view-medicines/view-medicines.component';
-import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
-import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
+import { GlobalModule } from './global/global.module';
 import { AnimalFilterPipe } from './pipe/animal-filter.pipe';
+import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,22 +42,21 @@ import { AnimalFilterPipe } from './pipe/animal-filter.pipe';
     ViewAnimalsComponent,
     ViewEmployeesComponent,
     ViewMedicinesComponent,
-    AlertModalComponent,
     EmployeeFilterPipe,
-    AnimalFilterPipe,
+    AnimalFilterPipe
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-    ], { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    GlobalModule.forRoot(),
+    SharedModule
   ],
-  entryComponents:[AlertModalComponent],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [ ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

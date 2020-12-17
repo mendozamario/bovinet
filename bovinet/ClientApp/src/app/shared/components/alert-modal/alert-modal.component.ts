@@ -12,6 +12,7 @@ export class AlertModalComponent implements OnInit {
 
   @Input() title;
   @Input() message;
+  
   ngOnInit(): void {
   }
 

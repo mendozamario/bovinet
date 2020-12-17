@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
 import { Owner } from 'src/app/models/owner';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';

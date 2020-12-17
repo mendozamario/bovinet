@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { Animal } from 'src/app/models/animal';
 import { Owner } from 'src/app/models/owner';
 import { AnimalService } from 'src/app/services/animal.service';
 import { OwnerService } from 'src/app/services/owner.service';
+import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-add-animals',
