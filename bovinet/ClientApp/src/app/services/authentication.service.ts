@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { User } from '../models/user';
 
@@ -8,7 +8,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { 
+  }
+
+  getCurrentUser(): User{
+    const userStr = localStorage.getItem('current_user');
+    console.log(userStr);
+    return JSON.parse(userStr);
+  }
+
+  getToken
 
   registerUser(user: User): Observable<User> {
     return this.http.post<User>('api/Users', user);
@@ -19,7 +29,7 @@ export class AuthenticationService {
   }
 
   setCurrentUser(user: User): void {
-    localStorage.setItem(user.token, 'user_token');
-    localStorage.setItem(JSON.stringify(user), 'current_user');
+    localStorage.setItem('user_token', user.token );
+    localStorage.setItem('current_user', JSON.stringify(user) );
   }
 }

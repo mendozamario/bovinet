@@ -1,4 +1,4 @@
-﻿using bovinet.Models;
+using bovinet.Models;
 using Data;
 using Entity;
 using Logic;
@@ -42,12 +42,12 @@ namespace bovinet.Controllers
         }
 
         [HttpDelete("{identification}")]
-        public ActionResult<string> Delete(string identification)
+        public ActionResult<bool> Delete(string identification)
         {
-            string messaje = _medicineServices.Delete(identification);
-            return Ok(messaje);
+            bool result = _medicineServices.Delete(identification);
+            return Ok(result);
         }
-        public Medicine MedicineMapper(MedicineInputModel medicineInput)
+        private Medicine MedicineMapper(MedicineInputModel medicineInput)
         {
             var medicine = new Medicine
             {

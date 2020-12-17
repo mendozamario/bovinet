@@ -36,7 +36,7 @@ namespace Logic
             List<Medicine> medicines = _context.Medicines.ToList();
             return medicines;
         }
-        public string Delete(string code)
+        public bool Delete(string code)
         {
             try
             {
@@ -45,16 +45,16 @@ namespace Logic
                 {
                     _context.Medicines.Remove(medicine);
                     _context.SaveChanges();
-                    return "Medicine has been removed";
+                    return true;
                 }
                 else
                 {
-                    return "Medicine dont registered";
+                    return false;
                 }
             }
             catch (Exception e)
             {
-                return $"Application Error: {e.Message}";
+                return false;
             }
         }
     }

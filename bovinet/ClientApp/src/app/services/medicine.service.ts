@@ -25,7 +25,7 @@ export class MedicineService {
     return this.http.post<Medicine>(this.baseUrl + this.apiUrl, medicine);
   }
 
-  delete(code: string): Observable<string>{
-    return this.http.delete<string>(this.baseUrl + this.apiUrl + code);
+  delete(code: string): Observable<boolean>{
+    return this.http.delete<boolean>(this.baseUrl + this.apiUrl + code);
   }
 }

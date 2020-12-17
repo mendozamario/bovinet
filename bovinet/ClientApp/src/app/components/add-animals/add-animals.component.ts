@@ -85,6 +85,7 @@ export class AddAnimalsComponent implements OnInit {
   consultOwners(){
     this.ownerService.get().subscribe(result => {
       this.owners = result;
+      console.log(result);
     });
   }
 

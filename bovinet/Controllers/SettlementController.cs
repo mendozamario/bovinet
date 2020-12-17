@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,25 +22,32 @@ namespace bovinet.Controllers
             _settlementService = new SettlementService(context);
         }
         // GET: api/<SettlementController>
-        //[HttpGet]
-        //public IEnumerable<SettlementViewModel> Get()
-        //{
-        //    List<Settlement> settlements = new List<Settlement>();
-        //    return settlements;
-        //}
+        [HttpGet]
+        public IEnumerable<SettlementViewModel> Get()
+        {
+            var settlements = _settlementService.Consult().Select(result => new SettlementViewModel(result));
+            return settlements;
+        }
         // POST api/<SettlementController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //    Settlement settlement = SettlementMapper()
-        //}
+        [HttpPost]
+        public ActionResult<SettlementViewModel> Post(SettlementInputModel settlementInput)
+        {
+            Settlement settlement = SettlementMapper(settlementInput);
+            SaveSettlementResponse saveSettlementResponse = _settlementService.Save(settlement);
+            var response = saveSettlementResponse;
+            if (response.Error)
+            {
+                return BadRequest(response.Error);
+            }
+            return Ok(response.Settlement);
+        }
         [HttpDelete("{identification}")]
         public ActionResult<string> Delete(string identification)
         {
             string messaje = _settlementService.Delete(identification);
             return Ok(messaje);
         }
-        public Settlement SettlementMapper(SettlementInputModel settlementInput)
+        private Settlement SettlementMapper(SettlementInputModel settlementInput)
         {
             var settlement = new Settlement
             {
@@ -49,6 +56,7 @@ namespace bovinet.Controllers
                 Salary = settlementInput.Salary,
                 Discount = settlementInput.Discount,
                 Bonus = settlementInput.Bonus,
+                EmployeeId = settlementInput.EmployeeId
             };
             return settlement;
         }

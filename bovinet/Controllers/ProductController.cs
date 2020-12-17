@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,14 +49,16 @@ namespace bovinet.Controllers
             string messaje = _productService.Delete(identification);
             return Ok(messaje);
         }
-        public Product ProductMapper (ProductInputModel productInput)
+
+        private Product ProductMapper (ProductInputModel productInput)
         {
             var product = new Product
             {
                 Code = productInput.Code,
                 LiterCost = productInput.LiterCost,
                 Quantity = productInput.Quantity,
-                Date = productInput.Date
+                Date = productInput.Date,
+                AnimalCode = productInput.AnimalCode
             };
             return product;
         }

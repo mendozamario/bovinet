@@ -26,6 +26,13 @@ namespace bovinet.Controllers
             var owners = _ownerService.Consult().Select(p => new OwnerViewModel(p));
             return owners;
         }
+        // GET: api/<OwnerController>
+        [HttpGet("{id}")]
+        public OwnerViewModel Get(string id)
+        {
+            var owner = _ownerService.Consult().Where(p => p.Id == id || p.UserId == id).Select(p => new OwnerViewModel(p)).FirstOrDefault();
+            return owner;
+        }
         // POST api/<OwnerController>
         [HttpPost]
         public ActionResult<OwnerViewModel> Post(OwnerInputModel ownerInput)
@@ -46,7 +53,9 @@ namespace bovinet.Controllers
             string messaje = _ownerService.Delete(identification);
             return Ok(messaje);
         }
-        public Owner OwnerMapper(OwnerInputModel ownerInput)
+
+
+        private Owner OwnerMapper(OwnerInputModel ownerInput)
         {
             var owner = new Owner
             {

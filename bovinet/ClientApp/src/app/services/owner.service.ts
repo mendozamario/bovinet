@@ -21,6 +21,10 @@ export class OwnerService {
     return this.http.get<Owner[]>(this.baseUrl + this.apiUrl);
   }
 
+  getId(id: string): Observable<Owner> {
+    return this.http.get<Owner>(this.baseUrl + this.apiUrl + id);
+  }
+
   post(owner: Owner): Observable<Owner> {
     return this.http.post<Owner>(this.baseUrl + this.apiUrl, owner);
   }

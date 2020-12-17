@@ -9,6 +9,7 @@ import { AnimalService } from 'src/app/services/animal.service';
 })
 export class ViewAnimalsComponent implements OnInit {
 
+  searchText: string;
   animals: Animal[];
   constructor(private animalService: AnimalService) { }
 

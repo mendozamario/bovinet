@@ -4,4 +4,5 @@ export class Settlement {
     salary: number;
     discount: number;
     bonus: number;
+    employeeId: string;
 }

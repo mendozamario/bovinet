@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace bovinet.Controllers
             string messaje = _medicineAppliedService.Delete(identification);
             return Ok(messaje);
         }
-        public MedicineApplied MedicineAppliedMapper(MedicineAppliedInputModel medicineAppliedInput)
+        private MedicineApplied MedicineAppliedMapper(MedicineAppliedInputModel medicineAppliedInput)
         {
             var medicineApplied = new MedicineApplied
             {

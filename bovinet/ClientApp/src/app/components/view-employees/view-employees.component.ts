@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class ViewEmployeesComponent implements OnInit {
 
+  searchText: string;
   employees: Employee[];
   constructor(private employeeService: EmployeeService) { }
 
