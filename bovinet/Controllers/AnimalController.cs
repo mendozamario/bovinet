@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using bovinet.Hubs;
 using bovinet.Models;
 using Data;
@@ -52,7 +53,7 @@ namespace bovinet.Controllers
         }
         // POST api/<AnimalController>
         [HttpPost]
-        public ActionResult<AnimalViewModel> Post(AnimalInputModel animalInput)
+        public async Task<ActionResult<AnimalViewModel>> Post(AnimalInputModel animalInput)
         {
             Animal animal = AnimalMapper(animalInput);
             SaveAnimalResponse saveAnimalResponse = _animalService.Save(animal);
@@ -61,16 +62,19 @@ namespace bovinet.Controllers
             {
                 return BadRequest(response.Message);
             }
-            _hubContext.Clients.All.SendAsync("NewAnimal", response.Animal).Start();
+
+            await _hubContext.Clients.All.SendAsync("NewAnimal", response.Animal);
+
             return Ok(response.Animal);
         }
 
         [HttpDelete("{identification}")]
-        public ActionResult<string> Delete(string identification)
+        public async Task<ActionResult<string>> Delete(string identification)
         {
             string messaje = _animalService.Delete(identification);
 
-            _hubContext.Clients.All.SendAsync("DeleteAnimal", identification).Start();
+            await _hubContext.Clients.All.SendAsync("DeleteAnimal", identification);
+
             return Ok(messaje);
         }
         [HttpPut("{identificacion}")]
