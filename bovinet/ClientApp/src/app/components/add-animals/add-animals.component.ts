@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Animal } from 'src/app/models/animal';
 import { Owner } from 'src/app/models/owner';
 import { AnimalService } from 'src/app/services/animal.service';
 import { OwnerService } from 'src/app/services/owner.service';
-import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
+import { NotificationsService } from 'src/app/shared/services/notifications.service';
 
 @Component({
   selector: 'app-add-animals',
   templateUrl: './add-animals.component.html',
-  styleUrls: ['./add-animals.component.css']
+  styleUrls: [ './add-animals.component.css' ]
 })
 export class AddAnimalsComponent implements OnInit {
-
   owners: Owner[];
   animalCode: string;
   btnTitle = 'Add';
   action = 'Add';
   formGroup: FormGroup;
   animal: Animal;
-  constructor(private animalSerivce: AnimalService, private formBuilder: FormBuilder, private modalService:NgbModal, private ownerService: OwnerService) { }
+  constructor(
+    private animalSerivce: AnimalService,
+    private formBuilder: FormBuilder,
+    private notifications: NotificationsService,
+    private ownerService: OwnerService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -28,8 +31,8 @@ export class AddAnimalsComponent implements OnInit {
     this.consultOwners();
   }
 
-  private buildForm(){
-    this.animal =  new Animal();
+  private buildForm() {
+    this.animal = new Animal();
     this.animal.code = '';
     this.animal.breed = '';
     this.animal.weigth = 0;
@@ -40,59 +43,55 @@ export class AddAnimalsComponent implements OnInit {
     this.animal.ownerId = '';
 
     this.formGroup = this.formBuilder.group({
-      code: [this.animal.code, Validators.required],
-      breed: [this.animal.breed, Validators.required],
-      weigth: [this.animal.weigth, Validators.required],
-      datebirth: [this.animal.datebirth, Validators.required],
-      type: [this.animal.type, Validators.required],
-      status: [this.animal.status, Validators.required],
-      origin: [this.animal.origin, Validators.required],
-      ownerId: [this.animal.ownerId, Validators.required]
+      code: [ this.animal.code, Validators.required ],
+      breed: [ this.animal.breed, Validators.required ],
+      weigth: [ this.animal.weigth, Validators.required ],
+      datebirth: [ this.animal.datebirth, Validators.required ],
+      type: [ this.animal.type, Validators.required ],
+      status: [ this.animal.status, Validators.required ],
+      origin: [ this.animal.origin, Validators.required ],
+      ownerId: [ this.animal.ownerId, Validators.required ]
     });
   }
 
-  get control(){
+  get control() {
     return this.formGroup.controls;
   }
 
-  onSubmit(){
-    if (this.formGroup.invalid){
+  onSubmit() {
+    if (this.formGroup.invalid) {
       return;
-    }    
+    }
     this.add();
   }
 
-  add(){
-    if (this.action === 'Add'){
+  add() {
+    if (this.action === 'Add') {
       this.animal = this.formGroup.value;
-      this.animalSerivce.post(this.animal).subscribe(p => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-      messageBox.componentInstance.title = "Add animal"
-      messageBox.componentInstance.message = "Animal registered sucessfully"
-      this.animal = p;
+      this.animalSerivce.post(this.animal).subscribe((p) => {
+        this.notifications.showAlert('Add animal', 'Animal registered sucessfully');
+        this.animal = p;
       });
-    }else{
+    } else {
       this.animal = this.formGroup.value;
-    this.animalSerivce.put(this.animal).subscribe(p => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-      messageBox.componentInstance.title = "Edit animal"
-      messageBox.componentInstance.message = "Animal updated sucessfully"
-      this.animal = p;
-    });
+      this.animalSerivce.put(this.animal).subscribe((p) => {
+        this.notifications.showAlert('Edit animal', 'Animal updated sucessfully');
+        this.animal = p;
+      });
     }
   }
 
-  consultOwners(){
-    this.ownerService.get().subscribe(result => {
+  consultOwners() {
+    this.ownerService.get().subscribe((result) => {
       this.owners = result;
       console.log(result);
     });
   }
 
-  edit(){
-    if (this.animalCode != null){
+  edit() {
+    if (this.animalCode != null) {
       this.action = 'Edit';
-      this.animalSerivce.find(this.animalCode).subscribe(result => {
+      this.animalSerivce.find(this.animalCode).subscribe((result) => {
         this.animal = result;
         this.formGroup.patchValue({
           code: result.code,
@@ -104,7 +103,7 @@ export class AddAnimalsComponent implements OnInit {
           origin: result.origin,
           ownerId: result.ownerId
         });
-      })
+      });
     }
   }
 }

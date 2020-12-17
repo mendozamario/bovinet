@@ -1,30 +1,25 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AlertModalComponent } from '../components/alert-modal/alert-modal.component';
+import { NotificationsService } from './notifications.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ErrorHandleService {
-  constructor(private modalService: NgbModal) {}
+  constructor(private notificationsService: NotificationsService) {}
 
-  handleHttpError(error: HttpErrorResponse): void {
+  handleHttpError(error: Error): void {
     console.log(error);
-    if (typeof error.error === 'string') {
-      const modal = this.modalService.open(AlertModalComponent);
-      modal.componentInstance.title = 'Error';
-      modal.componentInstance.description = error.error;
-    } else if (error.error.errors) {
-      let errorMessage = '';
-      for (const prop of Object.keys(error.error.errors)) {
-        error.error.errors[prop].forEach((element: string) => {
-          errorMessage += `- ${element} <br/>`;
-        });
+    if (error instanceof HttpErrorResponse) {
+      if (typeof error.error === 'string') {
+        this.notificationsService.showAlert('Error', error.error);
+      } else if (error.error.errors) {
+        let errorMessage = '';
+        for (const prop of Object.keys(error.error.errors)) {
+          error.error.errors[prop].forEach((element: string) => {
+            errorMessage += `- ${element} <br/>`;
+          });
+        }
+        this.notificationsService.showAlert('Se presentaron los siguientes errores', errorMessage);
       }
-      const modal = this.modalService.open(AlertModalComponent);
-      modal.componentInstance.title = 'Se presentaron los siguientes errores';
-      modal.componentInstance.description = errorMessage;
     }
   }
 }
