@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
-import { GlobalErrorHandler } from './@base/global-error-handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
@@ -22,8 +20,10 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ViewAnimalsComponent } from './components/view-animals/view-animals.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { ViewMedicinesComponent } from './components/view-medicines/view-medicines.component';
+import { GlobalModule } from './global/global.module';
 import { AnimalFilterPipe } from './pipe/animal-filter.pipe';
 import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
     ViewAnimalsComponent,
     ViewEmployeesComponent,
     ViewMedicinesComponent,
-    AlertModalComponent,
     EmployeeFilterPipe,
     AnimalFilterPipe
   ],
@@ -53,10 +52,11 @@ import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
     FormsModule,
     RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    GlobalModule.forRoot(),
+    SharedModule
   ],
-  entryComponents: [ AlertModalComponent ],
-  providers: [ { provide: ErrorHandler, useClass: GlobalErrorHandler } ],
+  entryComponents: [ ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
