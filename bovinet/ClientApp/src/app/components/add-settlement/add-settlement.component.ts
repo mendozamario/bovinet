@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/models/employee';
 import { Settlement } from 'src/app/models/settlement';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { SettlementService } from 'src/app/services/settlement.service';
 
 @Component({
@@ -11,16 +13,19 @@ import { SettlementService } from 'src/app/services/settlement.service';
 })
 export class AddSettlementComponent implements OnInit {
 
+  salary: number;
   formGroup: FormGroup;
   employeeId: number;
   settlement: Settlement;
   constructor(private settlementService: SettlementService,
+    private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) { 
       this.employeeId = +this.route.snapshot.paramMap.get('id');
     }
 
   ngOnInit(): void {
+    this.consultSalary();
     this.buildForm();
   }
 
@@ -29,7 +34,6 @@ export class AddSettlementComponent implements OnInit {
     this.settlement.code = '';
     this.settlement.bonus = 0;
     this.settlement.discount = 0;
-    this.settlement.salary = 0;
     this.settlement.settlementdate = '';
     this.settlement.employeeId = this.employeeId.toString();
 
@@ -38,7 +42,6 @@ export class AddSettlementComponent implements OnInit {
       bonus: [this.settlement.bonus, Validators.required],
       discount: [this.settlement.discount, Validators.required],
       employeeId: [this.settlement.employeeId, Validators.required],
-      salary: [this.settlement.salary, Validators.required],
       settlementdate: [this.settlement.settlementdate, Validators.required]
     });
   }
@@ -55,7 +58,9 @@ export class AddSettlementComponent implements OnInit {
   }
 
   add(){
+    this.consultSalary();
     this.settlement = this.formGroup.value;
+    this.settlement.salary = this.salary;
     console.log(this.settlement);
     this.settlementService.post(this.settlement).subscribe(result => {
       this.settlement = result;
@@ -63,5 +68,11 @@ export class AddSettlementComponent implements OnInit {
 
       console.log(result);
     })
+  }
+
+  consultSalary(){
+    this.employeeService.getId(this.employeeId.toString()).subscribe(result => {
+      this.salary = result.salary;
+    });
   }
 }

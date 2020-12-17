@@ -28,7 +28,13 @@ namespace bovinet.Controllers
             var employees = _employeeService.Consult().Select(p => new EmployeeViewModel(p));
             return employees;
         }
-
+         // GET: api/<EmployeeController>
+        [HttpGet("{id}")]
+        public EmployeeViewModel Get(string id)
+        {
+            var employee = _employeeService.Consult().Where(p => p.Id == id).Select(p => new EmployeeViewModel(p)).FirstOrDefault();
+            return employee;
+        }
         // POST api/<EmployeeController>
         [HttpPost]
         public ActionResult<EmployeeViewModel> Post(EmployeeInputModel employeeInput)
