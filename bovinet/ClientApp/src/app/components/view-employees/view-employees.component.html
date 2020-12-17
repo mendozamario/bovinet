@@ -4,6 +4,11 @@
     </h3>
 </div>
 <hr>
+<div class="filter">
+    <label for="searchText">Filter id:</label>
+    <input class="form-control" type="text" name="searchText" id="searchText" placeholder="Input employee id" [(ngModel)]="searchText">
+</div>
+<hr>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let employee of employees; index as i">
+        <tr *ngFor = "let employee of employees | employeeFilter: searchText; index as i">
             <td>{{ employee.id }}</td>
             <td>{{ employee.name }}</td>
             <td>{{ employee.position }}</td>

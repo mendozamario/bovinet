@@ -4,6 +4,11 @@
     </h3>
 </div>
 <hr>
+<div class="filter">
+    <label for="searchText">Filter code:</label>
+    <input class="form-control" type="text" name="searchText" id="searchText" placeholder="Input animal code" [(ngModel)]="searchText">
+</div>
+<hr>
 <table class="table">
     <thead>
         <tr>
@@ -19,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let animal of consultAnimals; index as i">
+        <tr *ngFor = "let animal of animals; index as i">
             <td>{{ animal.code }}</td>
             <td>{{ animal.breed }}</td>
             <td>{{ animal.weigth }}</td>

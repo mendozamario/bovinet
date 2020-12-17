@@ -4,13 +4,35 @@
     </h3>
 </div>
 <hr>
-<table>
+<table class="table">
     <thead>
-        <tr>
-            <th>#</th>
-        </tr>
+      <tr>
+        <th>Code</th>
+        <th>Type</th>
+        <th>Concept</th>
+        <th>Date</th>
+        <th>Propietary id</th>
+        <th>Cost</th>
+      </tr>
     </thead>
     <tbody>
-
+    <tr *ngFor = "let product of products">
+        <td>{{ product.code }}</td>
+        <td>Production</td>
+        <td>production income</td>
+        <td>{{ product.date | date }}</td>
+        <td>{{ product.animalCode }}</td>
+        <td>{{ product.literCost }}</td>
+    </tr>
+    <tr *ngFor = "let product of settlements">
+        <td>{{ product.code }}</td>
+        <td>Settlement</td>
+        <td>liquidation expense</td>
+        <td>{{ product.settlementdate | date }}</td>
+        <td>{{ product.employeeId }}</td>
+        <td>{{ product.total }}</td>
+    </tr>
     </tbody>
 </table>
+<hr>
+<input class="form-control" type="number" id="expense" name="expense" placeholder="Expense report" [(ngModel)]="expense">

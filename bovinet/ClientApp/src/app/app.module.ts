@@ -21,6 +21,8 @@ import { ViewMedicinesComponent } from './components/view-medicines/view-medicin
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
+import { EmployeeFilterPipe } from './pipe/employee-filter.pipe';
+import { AnimalFilterPipe } from './pipe/animal-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     ViewEmployeesComponent,
     ViewMedicinesComponent,
     AlertModalComponent,
+    EmployeeFilterPipe,
+    AnimalFilterPipe,
   ],
   imports: [
     ReactiveFormsModule,

@@ -15,11 +15,8 @@ namespace bovinet.Models
         public float Weigth { get; set; }
         [Required(ErrorMessage = "La fecha es requerida")]
         public string DateBirth { get; set; }
-        [TypeValidation(ErrorMessage = "El tipo debe ser escotero o milking")]
         public string Type { get; set; }
-        [StatusValidation(ErrorMessage = "El estado debe ser pregnant o not pregnant")]
         public string Status { get; set; }
-        [OriginValidation(ErrorMessage ="El origen debe ser born o buy")]
         public string Origin { get; set; }
         [Required(ErrorMessage = "El id del Owner es necesario")]
         public string OwnerId { get; set; }

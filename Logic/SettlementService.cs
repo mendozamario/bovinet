@@ -17,6 +17,7 @@ namespace Logic
         {
             try
             {
+                settlement.CalculateSalary();
                 var settlementSearch = _context.Settlements.Find(settlement.Code);
                 if (settlementSearch != null)
                 {

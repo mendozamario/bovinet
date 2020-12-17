@@ -19,6 +19,7 @@ namespace bovinet.Models
             LiterCost = product.LiterCost;
             Quantity = product.Quantity;
             Date = product.Date;
+            AnimalCode = product.AnimalCode;
         }
     }
 }

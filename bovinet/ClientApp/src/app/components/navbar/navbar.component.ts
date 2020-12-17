@@ -19,10 +19,8 @@ export class NavbarComponent implements OnInit {
   loadData() {
     const user = this.authenticationService.getCurrentUser();
     this.isLogged = user != null;
-    console.log(user);
     this.ownerService.getId(user.id).subscribe(result => {
       this.isAdmin =  result.type === 'Administrative';
-      console.log(result);
     })
   }
 
