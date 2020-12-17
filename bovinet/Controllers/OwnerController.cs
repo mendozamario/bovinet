@@ -53,7 +53,9 @@ namespace bovinet.Controllers
             string messaje = _ownerService.Delete(identification);
             return Ok(messaje);
         }
-        public Owner OwnerMapper(OwnerInputModel ownerInput)
+
+
+        private Owner OwnerMapper(OwnerInputModel ownerInput)
         {
             var owner = new Owner
             {

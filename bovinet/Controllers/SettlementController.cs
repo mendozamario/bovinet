@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +40,7 @@ namespace bovinet.Controllers
             string messaje = _settlementService.Delete(identification);
             return Ok(messaje);
         }
-        public Settlement SettlementMapper(SettlementInputModel settlementInput)
+        private Settlement SettlementMapper(SettlementInputModel settlementInput)
         {
             var settlement = new Settlement
             {

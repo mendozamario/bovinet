@@ -71,6 +71,7 @@ namespace bovinet
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "My API version-1");
             });
+            app.UseDeveloperExceptionPage();
 
             app.UseEndpoints(endpoints =>
             {

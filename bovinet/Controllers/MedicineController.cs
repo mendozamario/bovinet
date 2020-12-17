@@ -1,4 +1,4 @@
-﻿using bovinet.Models;
+using bovinet.Models;
 using Data;
 using Entity;
 using Logic;
@@ -47,7 +47,7 @@ namespace bovinet.Controllers
             bool result = _medicineServices.Delete(identification);
             return Ok(result);
         }
-        public Medicine MedicineMapper(MedicineInputModel medicineInput)
+        private Medicine MedicineMapper(MedicineInputModel medicineInput)
         {
             var medicine = new Medicine
             {

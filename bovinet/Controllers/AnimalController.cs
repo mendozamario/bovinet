@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +73,7 @@ namespace bovinet.Controllers
             var mensaje = _animalService.Update(animal);
             return Ok(mensaje);
         }
-        public Animal AnimalMapper(AnimalInputModel animalInput)
+        private Animal AnimalMapper(AnimalInputModel animalInput)
         {
             var animal = new Animal
             {

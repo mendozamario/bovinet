@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +50,7 @@ namespace bovinet.Controllers
             return Ok(messaje);
         }
 
-        public Employee EmployeeMapper(EmployeeInputModel employeeInput)
+        private Employee EmployeeMapper(EmployeeInputModel employeeInput)
         {
             var Employee = new Employee
             {
