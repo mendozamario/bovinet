@@ -70,7 +70,7 @@ namespace bovinet.Controllers
         {
             string messaje = _animalService.Delete(identification);
 
-            _hubContext.Clients.All.SendAsync("DeleteAnimal").Start();
+            _hubContext.Clients.All.SendAsync("DeleteAnimal", identification).Start();
             return Ok(messaje);
         }
         [HttpPut("{identificacion}")]
