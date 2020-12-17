@@ -29,9 +29,9 @@ export class AddSettlementComponent implements OnInit {
     this.settlement.code = '';
     this.settlement.bonus = 0;
     this.settlement.discount = 0;
-    this.settlement.employeeId = '';
     this.settlement.salary = 0;
     this.settlement.settlementdate = '';
+    this.settlement.employeeId = this.employeeId.toString();
 
     this.formGroup = this.formBuilder.group({
       code: [this.settlement.code, Validators.required],
@@ -56,9 +56,12 @@ export class AddSettlementComponent implements OnInit {
 
   add(){
     this.settlement = this.formGroup.value;
+    console.log(this.settlement);
     this.settlementService.post(this.settlement).subscribe(result => {
       this.settlement = result;
       alert("Settlement has been registered");
+
+      console.log(result);
     })
   }
 }

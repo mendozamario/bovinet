@@ -22,18 +22,25 @@ namespace bovinet.Controllers
             _settlementService = new SettlementService(context);
         }
         // GET: api/<SettlementController>
-        //[HttpGet]
-        //public IEnumerable<SettlementViewModel> Get()
-        //{
-        //    List<Settlement> settlements = new List<Settlement>();
-        //    return settlements;
-        //}
+        [HttpGet]
+        public IEnumerable<SettlementViewModel> Get()
+        {
+            var settlements = _settlementService.Consult().Select(result => new SettlementViewModel(result));
+            return settlements;
+        }
         // POST api/<SettlementController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //    Settlement settlement = SettlementMapper()
-        //}
+        [HttpPost]
+        public ActionResult<SettlementViewModel> Post(SettlementInputModel settlementInput)
+        {
+            Settlement settlement = SettlementMapper(settlementInput);
+            SaveSettlementResponse saveSettlementResponse = _settlementService.Save(settlement);
+            var response = saveSettlementResponse;
+            if (response.Error)
+            {
+                return BadRequest(response.Error);
+            }
+            return Ok(response.Settlement);
+        }
         [HttpDelete("{identification}")]
         public ActionResult<string> Delete(string identification)
         {

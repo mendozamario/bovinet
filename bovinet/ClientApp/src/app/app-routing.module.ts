@@ -40,22 +40,14 @@ const routes: Routes = [
   { path: 'add-production/:id', component: AddProductionComponent , canActivate: [
     AuthGuard
   ]},
-  { path: 'add-settlement', component: AddSettlementComponent , canActivate: [
-    AuthGuard
-  ]},
+  { path: 'add-settlement/:id', component: AddSettlementComponent},
   { path: 'reports', component: ReportsComponent},
   { path: 'view-animals', component: ViewAnimalsComponent , canActivate: [
     AuthGuard
   ]},
-  { path: 'view-employees', component: ViewEmployeesComponent , canActivate: [
-    AuthGuard
-  ]},
-  { path: 'view-medicines', component: ViewMedicinesComponent , canActivate: [
-    AuthGuard
-  ]},
-  { path: 'settlement', component: AddSettlementComponent , canActivate: [
-    AuthGuard
-  ]},
+  { path: 'view-employees', component: ViewEmployeesComponent},
+  { path: 'view-medicines', component: ViewMedicinesComponent},
+  { path: 'settlement', component: AddSettlementComponent},
   { path: '**', redirectTo: 'home' }
 ];
 
