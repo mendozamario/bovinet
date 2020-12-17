@@ -1,9 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddAnimalsComponent } from './components/add-animals/add-animals.component';
@@ -50,13 +48,10 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     AppRoutingModule,
-    NgbModule,
     GlobalModule.forRoot(),
     SharedModule
   ],
-  entryComponents: [ ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
